@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2uopcpeaxl8o"]
 
-[ext_resource type="PackedScene" uid="uid://dy6iv0x8udb1v" path="res://ball.tscn" id="2_u88ny"]
-[ext_resource type="PackedScene" uid="uid://8u50fc06u2ye" path="res://tile.tscn" id="3_twn5j"]
+[ext_resource type="PackedScene" uid="uid://dy6iv0x8udb1v" path="res://Scenes/ball.tscn" id="2_u88ny"]
+[ext_resource type="PackedScene" uid="uid://8u50fc06u2ye" path="res://Scenes/tile.tscn" id="3_twn5j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8xm"]
 size = Vector2(160, 16)
@@ -32,6 +32,7 @@ position = Vector2(136, 32)
 shape = SubResource("RectangleShape2D_6j2en")
 
 [node name="Tiles" type="Node2D" parent="."]
+z_index = -1
 
 [node name="Tile" parent="Tiles" node_paths=PackedStringArray("ball") instance=ExtResource("3_twn5j")]
 collision_layer = 32
@@ -673,8 +674,6 @@ collision_layer = 16
 ball = NodePath("../../Ball1")
 
 [node name="Ball1" parent="." instance=ExtResource("2_u88ny")]
-unique_name_in_owner = true
-position = Vector2(104, 24)
 collision_layer = 16
 collision_mask = 36
 is_ball_one = true
@@ -686,8 +685,6 @@ color = Color(1, 0, 0, 1)
 direction = Vector2(-1, 0)
 
 [node name="Ball2" parent="." instance=ExtResource("2_u88ny")]
-unique_name_in_owner = true
-position = Vector2(0, 0)
 collision_layer = 32
 collision_mask = 20
 

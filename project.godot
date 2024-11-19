@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="bouncy"
-run/main_scene="res://game.tscn"
+config/name="ShadersGold2"
+run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Art/2D/icon.svg"
+
+[autoload]
+
+Events="*res://Scripts/Global/Events.gd"
 
 [display]
 
@@ -22,6 +26,18 @@ window/size/viewport_height=64
 window/size/window_width_override=512
 window/size/window_height_override=256
 window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="bouncy"
+
+[file_customization]
+
+folder_colors={
+"res://Art/": "red",
+"res://Scenes/": "green",
+"res://Scripts/": "blue"
+}
 
 [layer_names]
 

@@ -10,6 +10,7 @@ class_name Ball
 @export var colour_ball_two := Color('#B18FCF')
 @export var speed := 75.0
 
+const TRAIL = preload("res://Scenes/Effects/trail.tscn")
 
 func _ready() -> void:
 	# Set the position
@@ -26,6 +27,8 @@ func _ready() -> void:
 	# Set the correct colours
 	polygon_2d.color = colour_ball_one if is_ball_one else colour_ball_two
 	cpu_particles_2d.color = colour_ball_one if is_ball_one else colour_ball_two
+	var new_trail = TRAIL.instantiate()
+	add_child(new_trail)
 
 
 func _physics_process(delta: float) -> void:
@@ -40,9 +43,11 @@ func _physics_process(delta: float) -> void:
 
 		# If the collision is with a tile, toggle it
 		if collision.get_collider() is Tile:
+			# ADD EFFECT HERE:
+			
+			#
 			collision.get_collider().toggle(self)
 			cpu_particles_2d.emitting = true
-
 
 func _get_collision_layer() -> int:
 	return collision_layer
