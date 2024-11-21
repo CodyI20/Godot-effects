@@ -43,9 +43,6 @@ func _physics_process(delta: float) -> void:
 
 		# If the collision is with a tile, toggle it
 		if collision.get_collider() is Tile:
-			# ADD EFFECT HERE:
-			
-			#
 			collision.get_collider().toggle(self)
 			cpu_particles_2d.emitting = true
 

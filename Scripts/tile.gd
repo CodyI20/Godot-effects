@@ -1,6 +1,8 @@
 extends StaticBody2D
 class_name Tile
 
+signal on_collision()
+
 @onready var polygon_2d: Polygon2D = $Polygon2D
 
 @export var ball: Ball
@@ -10,6 +12,7 @@ func _ready() -> void:
 
 
 func toggle(collided_ball: Ball) -> void:
+	on_collision.emit()
 	ball = collided_ball
 
 	# Set collision layer to layer that the collided ball is on.
