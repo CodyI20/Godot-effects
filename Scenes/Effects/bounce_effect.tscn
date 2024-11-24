@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp6lffbs6u6x7"]
+
+[ext_resource type="Script" path="res://Scripts/destroy_after_one_shot.gd" id="1_5020l"]
+
+[sub_resource type="Gradient" id="Gradient_e5xgd"]
+colors = PackedColorArray(0.888228, 0.160051, 0.516249, 1, 0.380901, 0.792956, 0.329233, 1)
+
+[node name="BounceEffect" type="CPUParticles2D"]
+amount = 150
+speed_scale = 4.0
+explosiveness = 0.25
+randomness = 1.0
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 3.1
+spread = 0.0
+gravity = Vector2(0, 0)
+angular_velocity_min = -0.06
+angular_velocity_max = 2.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 3.0
+linear_accel_min = 86.64
+linear_accel_max = 86.64
+radial_accel_min = 28.35
+radial_accel_max = 28.35
+scale_amount_min = 1.2
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_e5xgd")
+script = ExtResource("1_5020l")

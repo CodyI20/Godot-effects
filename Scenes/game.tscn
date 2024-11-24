@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2uopcpeaxl8o"]
+[gd_scene load_steps=6 format=3 uid="uid://d2uopcpeaxl8o"]
 
+[ext_resource type="Script" path="res://Scripts/screen_shake.gd" id="1_oeu2d"]
 [ext_resource type="PackedScene" uid="uid://dy6iv0x8udb1v" path="res://Scenes/ball.tscn" id="2_u88ny"]
 [ext_resource type="PackedScene" uid="uid://8u50fc06u2ye" path="res://Scenes/tile.tscn" id="3_twn5j"]
 
@@ -10,6 +11,11 @@ size = Vector2(160, 16)
 size = Vector2(16, 96)
 
 [node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(64, 32)
+script = ExtResource("1_oeu2d")
+shake_intensity_limit = 4.0
 
 [node name="Boundaries" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -680,9 +686,6 @@ is_ball_one = true
 
 [node name="Polygon2D" parent="Ball1" index="0"]
 color = Color(1, 0, 0, 1)
-
-[node name="CPUParticles2D" parent="Ball1" index="2"]
-direction = Vector2(-1, 0)
 
 [node name="Ball2" parent="." instance=ExtResource("2_u88ny")]
 collision_layer = 32
