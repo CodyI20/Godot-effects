@@ -41,6 +41,8 @@ func _physics_process(delta: float) -> void:
 		var bounce_effect = BOUNCE_EFFECT.instantiate()
 		bounce_effect.position += Vector2(4,4)
 		add_child(bounce_effect)
+		
+		
 
 		# If the collision is with a tile, toggle it
 		if collision.get_collider() is Tile:

@@ -15,7 +15,7 @@ size = Vector2(16, 96)
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(64, 32)
 script = ExtResource("1_oeu2d")
-shake_intensity_limit = 4.0
+shake_intensity_limit = 1.5
 
 [node name="Boundaries" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -680,7 +680,7 @@ collision_layer = 16
 ball = NodePath("../../Ball1")
 
 [node name="Ball1" parent="." instance=ExtResource("2_u88ny")]
-collision_layer = 16
+collision_layer = 18
 collision_mask = 36
 is_ball_one = true
 
@@ -688,7 +688,7 @@ is_ball_one = true
 color = Color(1, 0, 0, 1)
 
 [node name="Ball2" parent="." instance=ExtResource("2_u88ny")]
-collision_layer = 32
+collision_layer = 34
 collision_mask = 20
 
 [node name="Polygon2D" parent="Ball2" index="0"]

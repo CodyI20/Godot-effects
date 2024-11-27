@@ -39,6 +39,10 @@ folder_colors={
 "res://Scripts/": "blue"
 }
 
+[global_group]
+
+ball=""
+
 [layer_names]
 
 2d_physics/layer_1="paddle"

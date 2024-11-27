@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://8u50fc06u2ye"]
+[gd_scene load_steps=5 format=3 uid="uid://8u50fc06u2ye"]
 
 [ext_resource type="Script" path="res://Scripts/tile.gd" id="1_1rer8"]
 [ext_resource type="Script" path="res://Scenes/tile_polygon.gd" id="2_x260a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rn0g"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vs45s"]
 size = Vector2(8, 8)
 
 [node name="Tile" type="StaticBody2D"]
@@ -22,3 +25,13 @@ new_size = Vector2(0.5, 0.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_6rn0g")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 48
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_vs45s")
+
+[connection signal="body_entered" from="Area2D" to="Polygon2D" method="_on_area_2d_body_entered"]

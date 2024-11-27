@@ -3,7 +3,7 @@ class_name Tile
 
 signal on_collision()
 
-@onready var polygon_2d: Polygon2D = $Polygon2D
+@onready var polygon_2d: TilePolygon = $Polygon2D
 
 @export var ball: Ball
 
@@ -26,5 +26,7 @@ func set_color() -> void:
 	# Set the colour to the opposite ball's colour
 	if ball.is_ball_one:
 		polygon_2d.color = ball.colour_ball_two
+		polygon_2d.current_color = ball.colour_ball_two
 	else:
 		polygon_2d.color = ball.colour_ball_one
+		polygon_2d.current_color = ball.colour_ball_one
