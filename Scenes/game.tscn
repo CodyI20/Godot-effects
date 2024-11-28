@@ -14,9 +14,9 @@ size = Vector2(16, 96)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qai06"]
 shader = ExtResource("4_alt8s")
-shader_parameter/wave_count = 20.0
-shader_parameter/speed = 12.0
-shader_parameter/height = 0.005
+shader_parameter/wave_count = 15.0
+shader_parameter/speed = 14.0
+shader_parameter/height = 0.007
 
 [node name="Game" type="Node2D"]
 
