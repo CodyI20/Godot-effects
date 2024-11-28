@@ -1,14 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2uopcpeaxl8o"]
+[gd_scene load_steps=9 format=3 uid="uid://d2uopcpeaxl8o"]
 
 [ext_resource type="Script" path="res://Scripts/screen_shake.gd" id="1_oeu2d"]
 [ext_resource type="PackedScene" uid="uid://dy6iv0x8udb1v" path="res://Scenes/ball.tscn" id="2_u88ny"]
 [ext_resource type="PackedScene" uid="uid://8u50fc06u2ye" path="res://Scenes/tile.tscn" id="3_twn5j"]
+[ext_resource type="Shader" path="res://Art/Shaders/ripple.gdshader" id="4_alt8s"]
+[ext_resource type="Script" path="res://Scripts/color_rect.gd" id="5_dji1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8xm"]
 size = Vector2(160, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6j2en"]
 size = Vector2(16, 96)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qai06"]
+shader = ExtResource("4_alt8s")
+shader_parameter/wave_count = 20.0
+shader_parameter/speed = 12.0
+shader_parameter/height = 0.005
 
 [node name="Game" type="Node2D"]
 
@@ -693,6 +701,23 @@ collision_mask = 20
 
 [node name="Polygon2D" parent="Ball2" index="0"]
 color = Color(0, 0, 1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="EFFECT #2 (Ripple)" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_qai06")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.903598, 0.903598, 0.903598, 1)
+script = ExtResource("5_dji1p")
+time_until_it_disappears = 0.7
+
+[node name="Timer" type="Timer" parent="CanvasLayer/EFFECT #2 (Ripple)"]
+one_shot = true
 
 [editable path="Ball1"]
 [editable path="Ball2"]

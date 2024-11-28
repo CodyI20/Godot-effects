@@ -47,9 +47,11 @@ func _physics_process(delta: float) -> void:
 		# If the collision is with a tile, toggle it
 		if collision.get_collider() is Tile:
 			collision.get_collider().toggle(self)
+			# And shake the screen...
+			Events.ball_hit_tile.emit()
 		else:
-			# SHAKE SCREEN
 			Events.ball_hit_non_tile.emit()
+			
 
 func _get_collision_layer() -> int:
 	return collision_layer

@@ -11,7 +11,7 @@ var initial_offset := Vector2.ZERO
 
 func _ready() -> void:
 	initial_offset = offset
-	Events.ball_hit_non_tile.connect(apply_shake)
+	Events.ball_hit_tile.connect(apply_shake)
 
 func apply_shake() -> void:
 	shake_intensity = shake_intensity_limit
