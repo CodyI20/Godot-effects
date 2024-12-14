@@ -15,11 +15,11 @@ func _ready() -> void:
 
 func collision_effects() -> void:
 	# Create a ripple on the tile
-	animation_player.play("Shine")
+	animation_player.play("Ripple")
 	# Scale the tile
 	var tween = get_tree().create_tween()
-	await tween.tween_property(self, "scale", new_size, .15)
-	await tween.tween_property(self, "scale", initial_size, .15)
+	await tween.tween_property(self, "scale", new_size, .25)
+	await tween.tween_property(self, "scale", initial_size, .25)
 	
 
 #region NEW EFFECT 1

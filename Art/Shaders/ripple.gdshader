@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
-uniform vec3 color: source_color;
+uniform vec3 outline_color: source_color;
+uniform vec3 new_color : source_color;
 uniform float num_cells: hint_range(2.0, 20.0, 1.0)=10.0;
 uniform float speed: hint_range(0.1,2.0, 0.01)=1.0;
 uniform float smoothness: hint_range(0.5, 0.99, 0.01)=0.99;
@@ -28,7 +29,7 @@ vec2 rotation ( vec2 uv, vec2 center, float ang){
 }
 
 void fragment(){
-
+	COLOR = vec4(COLOR.rgb, 0.0);
 	vec2 igrid = floor(UV * num_cells)/num_cells;
 
 	igrid = rotation(igrid, vec2(0.5), angle * PI/180.0);
@@ -37,7 +38,8 @@ void fragment(){
 	float rect_mask = rectanglef(igrid, 0.001,2.0,smoothness);
 	float grid_mask = 1.0 - rectanglef(fgrid,rect_mask,rect_mask,0.0);
 	float outline_mask = 1.0 - rectanglef(fgrid,rect_mask+0.1,rect_mask+0.1,0.0) - grid_mask;
-	vec3 outline = outline_mask * color;
-	vec3 output = mix(COLOR.rgb,outline,outline_mask);
+	vec3 outline = outline_mask * outline_color;
+	float color_mask = step(igrid.x, progress);
+	vec3 output = mix(mix(COLOR.rgb, new_color, color_mask), outline, outline_mask);
 	COLOR = vec4(output, outline_mask + grid_mask);
 }

@@ -9,6 +9,10 @@ signal on_collision()
 
 func _ready() -> void:
 	set_color()
+	if ball.is_ball_one:
+		polygon_2d.color = ball.colour_ball_two
+	else:
+		polygon_2d.color = ball.colour_ball_one
 
 
 func toggle(collided_ball: Ball) -> void:
@@ -25,8 +29,8 @@ func toggle(collided_ball: Ball) -> void:
 func set_color() -> void:
 	# Set the colour to the opposite ball's colour
 	if ball.is_ball_one:
-		polygon_2d.color = ball.colour_ball_two
+		polygon_2d.material.set_shader_parameter("new_color",ball.colour_ball_one)
 		polygon_2d.current_color = ball.colour_ball_two
 	else:
-		polygon_2d.color = ball.colour_ball_one
+		polygon_2d.material.set_shader_parameter("new_color",ball.colour_ball_two)
 		polygon_2d.current_color = ball.colour_ball_one
