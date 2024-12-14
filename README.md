@@ -20,7 +20,7 @@ There are a bunch of effects that I've used which you can find in a list below:
  - Scale tweening for hitting the tiles
    
  - A ripple effect when hitting the tiles which gradually changes the color to the new one
- - A Particle effect when the ball collides with anything
+ - A particle effect when the ball collides with anything
  - Screen shake when the ball hits an opposing tile
  - The color of each tile gets interpolated when the ball passes over (It uses tween to change to and from the color
  - A water-like ripple when the ball hits the boundary
