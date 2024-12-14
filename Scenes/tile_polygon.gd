@@ -5,17 +5,21 @@ class_name TilePolygon
 @export var new_size : Vector2
 var initial_size : Vector2
 var current_color : Color
+@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 
 func _ready() -> void:
 	initial_size = scale
 	var parent = get_parent()
 	if parent is Tile:
-		parent.on_collision.connect(change_size)
+		parent.on_collision.connect(collision_effects)
 
-func change_size() -> void:
+func collision_effects() -> void:
+	# Create a ripple on the tile
+	animation_player.play("Shine")
+	# Scale the tile
 	var tween = get_tree().create_tween()
-	await tween.tween_property(self, "scale", new_size, .1)
-	await tween.tween_property(self, "scale", initial_size, .1)
+	await tween.tween_property(self, "scale", new_size, .15)
+	await tween.tween_property(self, "scale", initial_size, .15)
 	
 
 #region NEW EFFECT 1

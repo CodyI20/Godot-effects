@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2uopcpeaxl8o"]
+[gd_scene load_steps=12 format=3 uid="uid://d2uopcpeaxl8o"]
 
 [ext_resource type="Script" path="res://Scripts/screen_shake.gd" id="1_oeu2d"]
 [ext_resource type="PackedScene" uid="uid://dy6iv0x8udb1v" path="res://Scenes/ball.tscn" id="2_u88ny"]
 [ext_resource type="PackedScene" uid="uid://8u50fc06u2ye" path="res://Scenes/tile.tscn" id="3_twn5j"]
-[ext_resource type="Shader" path="res://Art/Shaders/ripple.gdshader" id="4_alt8s"]
+[ext_resource type="Shader" path="res://Art/Shaders/flash.gdshader" id="4_06u4l"]
+[ext_resource type="Shader" path="res://Art/Shaders/screen_ripple.gdshader" id="4_alt8s"]
 [ext_resource type="Script" path="res://Scripts/color_rect.gd" id="5_dji1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8xm"]
@@ -11,6 +12,18 @@ size = Vector2(160, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6j2en"]
 size = Vector2(16, 96)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ycgao"]
+resource_local_to_scene = true
+shader = ExtResource("4_06u4l")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0pu0"]
+resource_local_to_scene = true
+shader = ExtResource("4_06u4l")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qai06"]
 shader = ExtResource("4_alt8s")
@@ -693,6 +706,7 @@ collision_mask = 36
 is_ball_one = true
 
 [node name="Polygon2D" parent="Ball1" index="0"]
+material = SubResource("ShaderMaterial_ycgao")
 color = Color(1, 0, 0, 1)
 
 [node name="Ball2" parent="." instance=ExtResource("2_u88ny")]
@@ -700,6 +714,7 @@ collision_layer = 34
 collision_mask = 20
 
 [node name="Polygon2D" parent="Ball2" index="0"]
+material = SubResource("ShaderMaterial_d0pu0")
 color = Color(0, 0, 1, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

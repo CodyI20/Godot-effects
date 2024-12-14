@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Ball
 
 const BOUNCE_EFFECT = preload("res://Scenes/Effects/bounce_effect.tscn")
-@onready var polygon_2d: Polygon2D = $Polygon2D
+@onready var polygon_2d: BallPolygon2D = $Polygon2D
 
 
 @export var is_ball_one := false
@@ -42,6 +42,10 @@ func _physics_process(delta: float) -> void:
 		bounce_effect.position += Vector2(4,4)
 		add_child(bounce_effect)
 		
+		# Create a flash on the ball
+		polygon_2d.flash_ball()
+			
+		# Fluctuate ball size
 		
 
 		# If the collision is with a tile, toggle it
@@ -55,3 +59,5 @@ func _physics_process(delta: float) -> void:
 
 func _get_collision_layer() -> int:
 	return collision_layer
+	
+	

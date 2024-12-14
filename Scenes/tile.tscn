@@ -1,7 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://8u50fc06u2ye"]
+[gd_scene load_steps=11 format=3 uid="uid://8u50fc06u2ye"]
 
 [ext_resource type="Script" path="res://Scripts/tile.gd" id="1_1rer8"]
+[ext_resource type="Shader" path="res://Art/Shaders/ripple.gdshader" id="2_sxlu0"]
 [ext_resource type="Script" path="res://Scenes/tile_polygon.gd" id="2_x260a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s6f38"]
+resource_local_to_scene = true
+shader = ExtResource("2_sxlu0")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/num_cells = 10.0
+shader_parameter/speed = 1.0
+shader_parameter/smoothness = 0.99
+shader_parameter/angle = 45.0
+shader_parameter/progress = 0.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_n74lp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rn0g"]
 size = Vector2(8, 8)
@@ -9,29 +22,75 @@ size = Vector2(8, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vs45s"]
 size = Vector2(8, 8)
 
+[sub_resource type="Animation" id="Animation_o8mlw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_inhrw"]
+resource_name = "Shine"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rao1b"]
+_data = {
+"RESET": SubResource("Animation_o8mlw"),
+"Shine": SubResource("Animation_inhrw")
+}
+
 [node name="Tile" type="StaticBody2D"]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_1rer8")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_s6f38")
 position = Vector2(4, 4)
-color = Color(1, 0, 1, 1)
+color = Color(0.453247, 0, 0.195932, 1)
+texture = SubResource("PlaceholderTexture2D_n74lp")
 polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+uv = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)
 script = ExtResource("2_x260a")
 new_color = Color(3.94672e-06, 0.655486, 0.660021, 1)
-new_size = Vector2(0.5, 0.5)
+new_size = Vector2(0.4, 0.4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_6rn0g")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_vs45s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rao1b")
+}
 
 [connection signal="body_entered" from="Area2D" to="Polygon2D" method="_on_area_2d_body_entered"]

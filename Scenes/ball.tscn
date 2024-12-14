@@ -1,6 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy6iv0x8udb1v"]
+[gd_scene load_steps=6 format=3 uid="uid://dy6iv0x8udb1v"]
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_b2blh"]
+[ext_resource type="Shader" path="res://Art/Shaders/flash.gdshader" id="2_g0nl4"]
+[ext_resource type="Script" path="res://Scripts/ball_polygon.gd" id="3_3reul"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdwog"]
+resource_local_to_scene = true
+shader = ExtResource("2_g0nl4")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rw2ro"]
 radius = 4.0
@@ -11,10 +19,14 @@ collision_layer = 2
 collision_mask = 13
 motion_mode = 1
 script = ExtResource("1_b2blh")
+colour_ball_one = Color(0, 0.225495, 0.206829, 1)
+colour_ball_two = Color(1, 0.417617, 0.228691, 1)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_bdwog")
 color = Color(1, 1, 0, 1)
 polygon = PackedVector2Array(1, 1, 3, 0, 5, 0, 7, 1, 8, 3, 8, 4, 8, 5, 7, 7, 5, 8, 4, 8, 3, 8, 1, 7, 0, 5, 0, 4, 0, 3)
+script = ExtResource("3_3reul")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 4)
