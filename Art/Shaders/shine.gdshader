@@ -12,6 +12,7 @@ uniform float Position_Min = 0.25;
 uniform float Position_Max = 0.5;
 uniform float Alpha : hint_range(0, 1) = 1;
 uniform sampler2D surface: source_color;
+uniform float progress : hint_range(0.0, 1.1, 0.01) = 0.0;
 
 vec2 rotate_uv(vec2 uv, vec2 center, float rotation, bool use_degrees){
 		float _angle = rotation;
@@ -40,13 +41,19 @@ void fragment() {
 		remapped_position = Position_Min + output_range * Position;
 	}
 	
-	float remapped_time = TIME * Speed + remapped_position;
-	remapped_time = fract(remapped_time);
+	//float remapped_time = TIME * Speed + remapped_position;
+	//remapped_time = fract(remapped_time);
+	//{
+		//remapped_time = -2.0 + 4.0 * remapped_time;
+	//}
+	float remapped_progress = progress * Speed + remapped_position;
+	remapped_progress = fract(remapped_progress);
 	{
-		remapped_time = -2.0 + 4.0 * remapped_time;
+		remapped_progress = -2.5 + 3.0 * remapped_progress;
 	}
 	
-	vec2 offset_uv = vec2(rotaded_uv.xy) + vec2(remapped_time, 0.0);
+	//vec2 offset_uv = vec2(rotaded_uv.xy) + vec2(remapped_time, 0.0);
+	vec2 offset_uv = vec2(rotaded_uv.xy) + vec2(remapped_progress, 0.0);
 	float line = vec3(offset_uv, 0.0).x;
 	line = abs(line);
 	line = gradient_to_edge * line;
