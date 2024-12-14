@@ -704,6 +704,7 @@ ball = NodePath("../../Ball1")
 collision_layer = 18
 collision_mask = 36
 is_ball_one = true
+speed = 85.0
 
 [node name="Polygon2D" parent="Ball1" index="0"]
 material = SubResource("ShaderMaterial_ycgao")
@@ -712,6 +713,7 @@ color = Color(1, 0, 0, 1)
 [node name="Ball2" parent="." instance=ExtResource("2_u88ny")]
 collision_layer = 34
 collision_mask = 20
+speed = 85.0
 
 [node name="Polygon2D" parent="Ball2" index="0"]
 material = SubResource("ShaderMaterial_d0pu0")
