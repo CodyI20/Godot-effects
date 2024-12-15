@@ -9,6 +9,6 @@ func _ready() -> void:
 func spawn_shiny() -> void:
 	var new_shiny_effect = SHINY.instantiate()
 	add_child(new_shiny_effect)
-	var shiny_animation_player = new_shiny_effect.get_child(0)
+	var shiny_animation_player = new_shiny_effect.get_child(0) as AnimationPlayer
 	await shiny_animation_player.animation_finished
 	new_shiny_effect.queue_free()
